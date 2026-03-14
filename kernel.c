@@ -1,3 +1,4 @@
+#include "kernel_stdio.h"
 #define VIDEO 0xB8000
 #define ATTR 0x07
 void kernel_main() {

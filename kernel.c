@@ -1,6 +1,8 @@
 #include "kernel_stdio.h"
 #define VIDEO 0xB8000
 #define ATTR 0x07
+keyboard_init();
+i8254_init();
 void kernel_main() {
     char *video = (char*)VIDEO;
     *video++ = 'K'; *video++ = ATTR;

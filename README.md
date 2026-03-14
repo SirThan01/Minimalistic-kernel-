@@ -3,18 +3,26 @@ The assembler code is not mine!
 Minimal kernel in C and assembly.
 
 ## MAKEFILE
-all: kernel.bin
-start.o: start.asm
-	nasm -f elf32 start.asm -o start.o
-kernel.o: kernel.c
-	gcc -ffreestanding -m32 -nostdlib -nostartfiles -fno-pie -c kernel.c -o kernel.o
-kernel.bin: start.o kernel.o
-	ld -m elf_i386 -T linker.ld -o kernel.bin start.o kernel.o
-run: kernel.bin
-	qemu-system-i386 -kernel kernel.bin
+# Настройки компилятора
+CC = i686-elf-gcc
+AS = nasm
+LD = i686-elf-ld
+CFLAGS = -m32 -ffreestanding -O2 -Wall -Wextra -I.
+ASFLAGS = -f elf32
+LDFLAGS = -m elf_i386 -T linker.ld
+C_SOURCES = $(shell find . -name "*.c")
+OBJ = ${C_SOURCES:.c=.o} boot.o
+all: kernel-001
+kernel-001: ${OBJ}
+	${LD} ${LDFLAGS} -o $@ $^
+%.o: %.c
+	${CC} ${CFLAGS} -c $< -o $@
+boot.o: boot.asm
+	${AS} ${ASFLAGS} boot.asm -o boot.o
 clean:
-	rm -f *.o *.bin
-
+	rm -rf *.o kernel-001
+	find . -name "*.o" -type f -delete
+	
 # Usage
 Understanding how the kernel works. Understanding protected mode. Base for kernel experiments.
 

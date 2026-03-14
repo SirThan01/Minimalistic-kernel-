@@ -1,7 +1,6 @@
-# Minimalistic-kernel-
-Kernel on c and asm.
+# Minimalistic-kernel
 The assembler code is not mine.
-Minimal kernel in C + ASM
+Minimal kernel in C + assembly 
 
 # Compilation
 
@@ -17,7 +16,11 @@ gcc -ffreestanding -m32 -nostdlib -nostartfiles -fno-pie -c kernel.c -o kernel.o
 
 # Usage 
 
-Learning OS development
-Understanding protected mode
-Base for kernel experiments
-Display text on screen
+Understanding how the kernel works.
+Understanding protected mode.
+Base for kernel experiments.
+
+# Info
+This is a newbie project.
+Architecture x86.
+

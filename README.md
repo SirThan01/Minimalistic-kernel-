@@ -3,7 +3,6 @@ The assembler code is not mine!
 Minimal kernel in C and assembly.
 
 ## MAKEFILE
-# Настройки компилятора
 CC = i686-elf-gcc
 AS = nasm
 LD = i686-elf-ld

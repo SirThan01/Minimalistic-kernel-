@@ -1,26 +1,28 @@
 # Minimalistic-kernel
-The assembler code is not mine.
-Minimal kernel in C + assembly 
+The assembler code is not mine!
+Minimal kernel in C and assembly.
 
 # Compilation
-
 nasm -f elf32 start.asm -o start.o
 gcc -ffreestanding -m32 -nostdlib -nostartfiles -fno-pie -c kernel.c -o kernel.o
 ld -m elf_i386 -T linker.ld -o kernel.bin start.o kernel.o
 qemu-system-i386 -kernel kernel.bin
 
 # MAKEFILE
+all: kernel.bin
+start.o: start.asm
+	nasm -f elf32 start.asm -o start.o
+kernel.o: kernel.c
+	gcc -ffreestanding -m32 -nostdlib -nostartfiles -fno-pie -c kernel.c -o kernel.o
+kernel.bin: start.o kernel.o
+	ld -m elf_i386 -T linker.ld -o kernel.bin start.o kernel.o
+run: kernel.bin
+	qemu-system-i386 -kernel kernel.bin
+clean:
+	rm -f *.o *.bin
 
-nasm -f elf32 start.asm -o start.o
-gcc -ffreestanding -m32 -nostdlib -nostartfiles -fno-pie -c kernel.c -o kernel.o ld -m elf_i386 -T linker.ld -o kernel.bin start.o kernel.o
-
-# Usage 
-
-Understanding how the kernel works.
-Understanding protected mode.
-Base for kernel experiments.
+# Usage
+Understanding how the kernel works. Understanding protected mode. Base for kernel experiments.
 
 # Info
-This is a newbie project.
-Architecture x86.
-
+This is a newbie project. Architecture x86.

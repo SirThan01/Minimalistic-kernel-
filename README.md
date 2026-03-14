@@ -23,7 +23,8 @@ boot.o: boot.asm
 clean:
 	rm -rf *.o kernel-001
 	find . -name "*.o" -type f -delete
-	
+
+```
 # Usage
 Understanding how the kernel works. Understanding protected mode. Base for kernel experiments.
 

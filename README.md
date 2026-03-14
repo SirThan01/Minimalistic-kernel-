@@ -7,8 +7,7 @@ Minimal kernel in C and assembly.
 CC = i686-elf-gcc
 AS = nasm
 LD = i686-elf-ld
-CFLAGS = -m32 -ffreestanding -O2
--Wall -Wextra -I.
+CFLAGS = -m32 -ffreestanding -O2 -Wall -Wextra -I.
 ASFLAGS = -f elf32
 LDFLAGS = -m elf_i386 -T linker.ld
 C_SOURCES = $(shell find . -name "*.c")
